@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @Zain
 - 👀 I’m interested in Robotics, Automation and Control
 - 🌱 I’m currently pursuing Phd in Surgical Robotics at KU Leuven
-- 💞️ I’m looking to collaborate on Continuum Robots, Mobile Robotics , ROS
+- 💞️ I’m looking for collaboration on Continuum Robots, Mobile Robotics , SLAM
 - 📫 How to reach me ... zainmehdi31@gmail.com
 
 <!---
