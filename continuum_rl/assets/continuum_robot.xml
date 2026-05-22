@@ -1,0 +1,90 @@
+<mujoco model="continuum_catheter">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast"/>
+
+  <default>
+    <default class="seg">
+      <joint type="hinge" stiffness="0.02" damping="0.003" armature="1e-6" range="-0.35 0.35"/>
+      <geom type="capsule" fromto="0 0 0 0 0 0.01" size="0.003" mass="0.0005" rgba="0.55 0.6 0.7 1"/>
+    </default>
+  </default>
+
+  <worldbody>
+    <light pos="0 0 0.3" dir="0 0 -1"/>
+    <camera name="side" pos="0.25 0 0.06" xyaxes="0 -1 0 0 0 1"/>
+
+    <body name="base" pos="0 0 0">
+      <geom type="cylinder" size="0.005 0.004" rgba="0.2 0.2 0.2 1" mass="0.02"/>
+
+      <body name="link1" pos="0 0 0.004" childclass="seg">
+        <joint name="j1x" axis="1 0 0"/>
+        <joint name="j1y" axis="0 1 0"/>
+        <geom/>
+        <body name="link2" pos="0 0 0.01">
+          <joint name="j2x" axis="1 0 0"/>
+          <joint name="j2y" axis="0 1 0"/>
+          <geom/>
+          <body name="link3" pos="0 0 0.01">
+            <joint name="j3x" axis="1 0 0"/>
+            <joint name="j3y" axis="0 1 0"/>
+            <geom/>
+            <body name="link4" pos="0 0 0.01">
+              <joint name="j4x" axis="1 0 0"/>
+              <joint name="j4y" axis="0 1 0"/>
+              <geom/>
+              <body name="link5" pos="0 0 0.01">
+                <joint name="j5x" axis="1 0 0"/>
+                <joint name="j5y" axis="0 1 0"/>
+                <geom/>
+                <body name="link6" pos="0 0 0.01">
+                  <joint name="j6x" axis="1 0 0"/>
+                  <joint name="j6y" axis="0 1 0"/>
+                  <geom/>
+                  <body name="link7" pos="0 0 0.01">
+                    <joint name="j7x" axis="1 0 0"/>
+                    <joint name="j7y" axis="0 1 0"/>
+                    <geom/>
+                    <body name="link8" pos="0 0 0.01">
+                      <joint name="j8x" axis="1 0 0"/>
+                      <joint name="j8y" axis="0 1 0"/>
+                      <geom rgba="0.85 0.4 0.4 1"/>
+                      <site name="tip" pos="0 0 0.01" size="0.002" rgba="1 0 0 1"/>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <tendon>
+    <fixed name="bend_x">
+      <joint joint="j1x" coef="1"/>
+      <joint joint="j2x" coef="1"/>
+      <joint joint="j3x" coef="1"/>
+      <joint joint="j4x" coef="1"/>
+      <joint joint="j5x" coef="1"/>
+      <joint joint="j6x" coef="1"/>
+      <joint joint="j7x" coef="1"/>
+      <joint joint="j8x" coef="1"/>
+    </fixed>
+    <fixed name="bend_y">
+      <joint joint="j1y" coef="1"/>
+      <joint joint="j2y" coef="1"/>
+      <joint joint="j3y" coef="1"/>
+      <joint joint="j4y" coef="1"/>
+      <joint joint="j5y" coef="1"/>
+      <joint joint="j6y" coef="1"/>
+      <joint joint="j7y" coef="1"/>
+      <joint joint="j8y" coef="1"/>
+    </fixed>
+  </tendon>
+
+  <actuator>
+    <motor name="act_x" tendon="bend_x" ctrlrange="-1 1" gear="0.005"/>
+    <motor name="act_y" tendon="bend_y" ctrlrange="-1 1" gear="0.005"/>
+  </actuator>
+</mujoco>
